@@ -1,1 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Nassar | Geomatics Engineer & Freelancer</title>
+    <style>
+        :root {
+            --bg-base: #050505;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --neon-blue: #00f0ff;
+            --neon-purple: #7000ff;
+            --gradient: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-base);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(112, 0, 255, 0.04) 0%, transparent 50%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--neon-blue); }
+
+        .hire-me-btn {
+            background: var(--gradient);
+            color: #fff !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 700 !important;
+            transition: opacity 0.3s, transform 0.3s !important;
+        }
+
+        .hire-me-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 8rem 0 4rem 0; }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            color: var(--neon-blue);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            width: fit-content;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--neon-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-blue);
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .typing-container {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            height: 2.5rem;
+        }
+
+        .typing-text::after { content: '|'; animation: blink 1s step-end infinite; color: var(--neon-blue); }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: 3rem;
+        }
+
+        .btn-group { display: flex; gap: 1rem; }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            z-index: -1;
+            transition: opacity 0.5s linear;
+            opacity: 0;
+        }
+
+        .btn-primary:hover::before { opacity: 1; }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: var(--text-main);
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--neon-blue);
+        }
+
+        h2.section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            letter-spacing: -1px;
+        }
+
+        h2.section-title span { color: var(--neon-blue); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.1);
+        }
+
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        
+        .service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .service-tags span {
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            color: var(--neon-blue);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .work-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s ease;
+        }
+
+        .work-card:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 10px 40px -10px rgba(112, 0, 255, 0.15);
+        }
+
+        .work-type {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--neon-blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .work-card h3 { font-size: 1.6rem; margin-bottom: 1rem; }
+        .work-card p { color: var(--text-muted); margin-bottom: 2rem; flex-grow: 1; }
+
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(0, 240, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); } }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .nav-links { display: none; }
+            .btn-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="nav-container">
+            <a href="#" class="logo">A<span>N</span>.</a>
+            <ul class="nav-links">
+                <li><a href="#services">Capabilities</a></li>
+                <li><a href="#work">Projects</a></li>
+                <li><a href="mailto:ayassern@hotmail.com" class="hire-me-btn">Contact Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        
+        <section class="hero reveal active">
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                Riyadh, SA | Geomatics Engineer
+            </div>
+            <h1>Geospatial <span>Data.</span><br>Innovative Technologies.</h1>
+            <div class="typing-container">
+                <span class="typing-text"></span>
+            </div>
+            <p>
+                Geomatics Engineer with a strong passion for geospatial data, analysis, and innovative geospatial technologies. Proven expertise in the principles, techniques, and applications of geospatial systems, including reality capture, mobile mapping, 3D scanning, and GNSS.
+            </p>
+            <div class="btn-group">
+                <a href="#work" class="btn-primary">View Projects</a>
+                <a href="mailto:ayassern@hotmail.com" class="btn-secondary">Email: ayassern@hotmail.com</a>
+                <a href="tel:+966570326646" class="btn-secondary">+966 57 032 6646</a>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-title">Core <span>Expertise.</span></h2>
+            <div class="services-grid">
+                
+                <div class="service-card reveal">
+                    <div class="service-icon">🌐</div>
+                    <h3>Reality Capture & Surveying</h3>
+                    <p>Conducting field surveys and data acquisition using GNSS, LIDAR, and 3D scanning technologies. Processing and analyzing geospatial data to create detailed maps, models, and reports.</p>
+                    <div class="service-tags">
+                        <span>Mobile Mapping</span><span>3D Scanning</span><span>Laser Scanning</span><span>GNSS/GPS</span>
+                    </div>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">💻</div>
+                    <h3>Front-End Web Development</h3>
+                    <p>Programming custom front-end interfaces from scratch, such as the complete front-end development for the Abu Ali Pharmacies website.</p>
+                    <div class="service-tags">
+                        <span>Front-end Dev</span><span>Web Programming</span>
+                    </div>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">📸</div>
+                    <h3>Brand Development</h3>
+                    <p>Managing creative projects and establishing digital pages. Experience includes creating the "Geospatial Guru" digital page and managing the "unseen.bynassar" photography and brand project.</p>
+                    <div class="service-tags">
+                        <span>Photography</span><span>Brand Development</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="work">
+            <h2 class="section-title">Selected <span>Projects.</span></h2>
+            <div class="work-grid">
+                
+                <div class="work-card reveal">
+                    <div class="work-type">Front-End Programming</div>
+                    <h3>Abu Ali Pharmacies Website</h3>
+                    <p>Programmed the front-end for the Abu Ali Pharmacies website from scratch.</p>
+                </div>
+
+                <div class="work-card reveal">
+                    <div class="work-type">Brand Development</div>
+                    <h3>unseen.bynassar & Geospatial Guru</h3>
+                    <p>Established a digital page titled "Geospatial Guru" and manage a separate photography and brand development project titled "unseen.bynassar".</p>
+                </div>
+
+                <div class="work-card reveal">
+                    <div class="work-type">Ministry of Municipal and Rural Affairs</div>
+                    <h3>3D Scanning Whole KSA</h3>
+                    <p>Deployed a KSA mega-scale 3D scanning initiative using advanced mobile mapping systems, capturing high-resolution geospatial data across diverse terrains to establish a comprehensive database for critical infrastructure planning and development.</p>
+                </div>
+
+                <div class="work-card reveal">
+                    <div class="work-type">MBL</div>
+                    <h3>King Salman International Stadium</h3>
+                    <p>High-detail Mobile Mapping Survey to support infrastructure development, topography through DEMs and contour maps, and detailed mapping of existing features for design and construction purposes.</p>
+                </div>
+
+                <div class="work-card reveal">
+                    <div class="work-type">HESCO, AECOM</div>
+                    <h3>Diriyah Development Project</h3>
+                    <p>Successfully surveyed a 70,000 m² area delivering a comprehensive geospatial database. Mapped surrounding infrastructure, including buildings and utilities and delivered Point Cloud with Panoramic Images and detailed maps with tree numbering.</p>
+                </div>
+
+                <div class="work-card reveal">
+                    <div class="work-type">FCEC; RCRC</div>
+                    <h3>Green Riyadh Project</h3>
+                    <p>Utilized high-precision LIDAR and GNSS technology to conduct detailed urban surveys, providing critical geospatial data for large-scale urban forestation initiatives.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ahmed Nassar. LinkedIn: in/ahm9d</p>
+    </footer>
+
+    <script>
+        // Typing Effect strictly using provided titles
+        const titles = ["Geomatics Engineer", "Technical Support Specialist", "GIS Specialist", "Technical Office Engineer"];
+        let count = 0; let index = 0; let currentText = ''; let letter = ''; let isDeleting = false;
+
+        function type() {
+            if (count === titles.length) count = 0;
+            currentText = titles[count];
+            letter = isDeleting ? currentText.slice(0, --index) : currentText.slice(0, ++index);
+            
+            document.querySelector('.typing-text').textContent = letter;
+            let typeSpeed = isDeleting ? 30 : 80;
+
+            if (!isDeleting && letter.length === currentText.length) {
+                typeSpeed = 2500; isDeleting = true;
+            } else if (isDeleting && letter.length === 0) {
+                isDeleting = false; count++; typeSpeed = 500;
+            }
+            setTimeout(type, typeSpeed);
+        }
+        document.addEventListener('DOMContentLoaded', type);
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
+    </script>
+</body>
+</html>
